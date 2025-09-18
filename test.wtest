@@ -16,6 +16,7 @@ describe "pruebaUno" {
   test "recargar a knight" {
     camion.cargar(knightRider)
     camion.cargar(knightRider)
+    camion.descargar(bumblebee)
     assert.equals(#{knightRider}, camion.cosas())
   }
 

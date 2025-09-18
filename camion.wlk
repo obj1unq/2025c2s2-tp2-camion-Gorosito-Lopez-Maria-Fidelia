@@ -11,4 +11,14 @@ object camion {
 		cosas.remove(unaCosa)
 	}
 	
+	method todoPesoPar(){
+	//si hay un numero impar el resultado va a se impar
+	return cosas.sum({o => o.peso()}).even()
+	}
+
+	method hayAlgunoQuePese(kilos){
+		return cosas.contains(kilos)
+	}
 }
+
+// sodaStereo.sum({musico => musico.cantidadAsistentes()})
