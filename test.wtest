@@ -19,6 +19,13 @@ describe "pruebaUno" {
     camion.descargar(bumblebee)
     assert.equals(#{knightRider}, camion.cosas())
   }
+  test "tiene algo que pese tanto" {
+    arenaAGranel.peso(50)
+    camion.cargar(arenaAGranel)
+    camion.cargar(bumblebee)
+    assert.that(camion.hayAlgunoQuePese(50))
+  }
+
 
 
 

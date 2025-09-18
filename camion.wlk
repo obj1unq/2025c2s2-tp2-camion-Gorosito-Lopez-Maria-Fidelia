@@ -18,7 +18,7 @@ object camion {
 	}
 
 	method hayAlgunoQuePese(kilos){
-		return cosas.contains(kilos)
+		return cosas.any({o => o.peso() == kilos})
 	}
 	
 	method pesoTotalDelCamion(){
@@ -28,6 +28,7 @@ object camion {
 	method tieneExcesoDePeso(){
 		return self.pesoTotalDelCamion() > 2500
 	}
+
 }
 
 // sodaStereo.sum({musico => musico.cantidadAsistentes()})
