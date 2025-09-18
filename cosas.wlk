@@ -21,7 +21,7 @@ object arenaAGranel {
 
 }
 
-object bumblevee {
+object bumblebee {
   var esAuto = true
   method peso(){
 	return 800
