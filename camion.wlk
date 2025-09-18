@@ -22,7 +22,7 @@ object camion {
 	}
 	
 	method pesoTotalDelCamion(){
-		return tara + cosas.sum({o => o.peso()})
+		return tara + cosas.sum(cosas.map({o => o.peso()}))
 	}
 
 	method tieneExcesoDePeso(){
