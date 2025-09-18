@@ -28,6 +28,7 @@ object bumblevee {
   }
   method nivelPeligrosidad(){
 	if(self.esAuto()){
+ //aca es buena idea preguntarle al getter o mejor preguntarle a la variable?? 
 	return 15
 	}else{
 		return 30
