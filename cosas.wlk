@@ -47,7 +47,7 @@ object bumblebee {
 object paqueteDeLadrillos {
   var cantidadDeLadrillos = 0
   method peso(){
-	cantidadDeLadrillos * 2
+	return cantidadDeLadrillos * 2
   }
   method nivelPeligrosidad(){
 	return 2
