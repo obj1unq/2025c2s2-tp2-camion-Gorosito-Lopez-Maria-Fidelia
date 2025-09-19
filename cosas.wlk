@@ -8,6 +8,9 @@ object knightRider {
   method bultos(){
     return 1
   }
+  method sufreAccidente(){
+    return
+  }
 }
 
 object arenaAGranel {
@@ -23,6 +26,9 @@ object arenaAGranel {
   }
   method bultos(){
     return 1
+  }
+  method sufreAccidente(){
+    peso = peso + 20
   }
 
 }
@@ -51,6 +57,9 @@ object bumblebee {
   method bultos(){
     return 2
   }
+  method sufreAccidente(){
+    esAuto = not(esAuto)
+  }
 }
 
 object paqueteDeLadrillos {
@@ -73,6 +82,14 @@ object paqueteDeLadrillos {
       return 2
     } else {
       return 1
+    }
+  }
+
+  method sufreAccidente(){
+    if(cantidadDeLadrillos > 12){
+      cantidadDeLadrillos = cantidadDeLadrillos - 12
+    }else{
+      cantidadDeLadrillos = 0
     }
   }
 
@@ -106,7 +123,11 @@ object bateriaAntiaerea {
       return 1
     }
   }
-
+  method sufreAccidente(){
+    if (tieneMisiles){
+      tieneMisiles = false
+    }
+  }
 
 }
 
@@ -125,6 +146,9 @@ object residuosRadiactivos {
   method bultos(){
     return 1
   }
+  method sufreAccidente(){
+    peso = peso +15
+  }
 }
 
 object contenedorPortuario{
@@ -142,22 +166,27 @@ object contenedorPortuario{
   method bultos(){
     return contiene.sum({o => o.bultos()}) + 1
   }
-  
+  method sufreAccidente(){
+    return contiene.forEach({o => o.sufreAccidente()})
+  }
 
 }
 
 object embalajeDeSeguridad {
   var objeto = null //hay que cargar un valor antes de usarla
   method peso(){
-    objeto.peso()
+    return objeto.peso()
   }
   method nivelPeligrosidad(){
-    objeto.nivelPeligrosidad() * 0.5
+    return objeto.nivelPeligrosidad() * 0.5
   }
   method embalar(_objeto){
     objeto = _objeto
   }
   method bultos(){
     return 2
+  }
+  method sufreAccidente(){
+    return 
   }
 }
