@@ -31,6 +31,13 @@ describe "pruebaUno" {
     assert.that(camion.hayAlgoQuePeseEntreY(2,4))
   }
   
+  test "elMasPesadoDelCamion" {
+    camion.cargar(bumblebee)
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(300)
+    camion.cargar(paqueteDeLadrillos)
+    assert.equals(bumblebee, camion.cosaMasPesadaDelCamion())
+  }
+
 
 
 
