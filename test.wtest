@@ -1,0 +1,82 @@
+import cosas.*
+import camion.*
+
+describe "pruebaUno" {
+  test "camion vacio + bumblebee + kinght" {
+    camion.cargar(bumblebee)
+    camion.cargar(knightRider)
+    assert.equals(#{bumblebee, knightRider}, camion.cosas())
+  }
+  test "carga de bumblebee y knight, descarga de bumblebee" {
+    camion.cargar(bumblebee)
+    camion.cargar(knightRider)
+    camion.descargar(bumblebee)
+    assert.equals(#{knightRider}, camion.cosas())
+  }
+  test "recargar a knight" {
+    camion.cargar(knightRider)
+    camion.cargar(knightRider)
+    camion.descargar(bumblebee)
+    assert.equals(#{knightRider}, camion.cosas())
+  }
+  test "tiene algo que pese tanto" {
+    arenaAGranel.peso(50)
+    camion.cargar(arenaAGranel)
+    camion.cargar(bumblebee)
+    assert.that(camion.hayAlgunoQuePese(800))
+  }
+
+  test "alguno que pese entre y entre" {
+    camion.cargar(paqueteDeLadrillos)
+    assert.that(camion.hayAlgoQuePeseEntreY(2,4))
+  }
+  
+  test "elMasPesadoDelCamion" {
+    camion.cargar(bumblebee)
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(300)
+    camion.cargar(paqueteDeLadrillos)
+    assert.equals(bumblebee, camion.cosaMasPesadaDelCamion())
+  }
+
+  test "caso 1 total bultos" {
+    cosas.contenedorPortuario.contiene(#{knightRider, bumblebee})
+    camion.cargar(contenedorPortuario)
+    cosas.embalajeDeSeguridad.embalar(residuosRadiactivos)
+    camion.cargar(cosas.embalajeDeSeguridad)
+    camion.cargar(arenaAGranel)
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(50)
+    camion.cargar(paqueteDeLadrillos)
+    cosas.bateriaAntiaerea.tieneMisiles(false)
+    camion.cargar(bateriaAntiaerea)
+    assert.equals(9, camion.cantidadDeBultos())
+  }
+
+  test "caso 2 total bultos" {
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(150)
+    camion.cargar(paqueteDeLadrillos)
+    camion.cargar(bateriaAntiaerea)
+    camion.cargar(contenedorPortuario)
+    assert.equals(5, camion.cantidadDeBultos())
+  }
+
+  test "caso 3 total bultos" {
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(350)
+    camion.cargar(paqueteDeLadrillos)
+    camion.cargar(arenaAGranel)
+    assert.equals(4, camion.cantidadDeBultos())
+  }
+
+  test "embalaje de seguridad" {
+    cosas.embalajeDeSeguridad.embalar(knightRider)
+    camion.cargar(cosas.embalajeDeSeguridad)
+    assert.equals(5, camion.peligroDelCamion() )
+  }
+
+
+
+
+
+
+
+
+}
