@@ -5,6 +5,9 @@ object knightRider {
 	method nivelPeligrosidad() { 
 		return 10 
 	}
+  method bultos(){
+    return 1
+  }
 }
 
 object arenaAGranel {
@@ -17,6 +20,9 @@ object arenaAGranel {
   }
   method peso(_peso){
 	peso = _peso
+  }
+  method bultos(){
+    return 1
   }
 
 }
@@ -42,6 +48,9 @@ object bumblebee {
   method esAuto(){
 	return esAuto
   }
+  method bultos(){
+    return 2
+  }
 }
 
 object paqueteDeLadrillos {
@@ -56,6 +65,15 @@ object paqueteDeLadrillos {
   //setter de la cantidad de ladrillos
   method cantidadDeLadrillos(_cantidadDeLadrillos){
 	cantidadDeLadrillos = _cantidadDeLadrillos
+  }
+  method bultos(){
+    if (cantidadDeLadrillos > 300){
+      return 3
+    }else if (cantidadDeLadrillos > 100){
+      return 2
+    } else {
+      return 1
+    }
   }
 
 }
@@ -80,6 +98,16 @@ object bateriaAntiaerea {
   method tieneMisiles(_tieneMisiles) {
 	tieneMisiles = _tieneMisiles
   }
+
+  method bultos(){
+    if(tieneMisiles){
+      return 2
+    }else{
+      return 1
+    }
+  }
+
+
 }
 
 object residuosRadiactivos {
@@ -93,6 +121,9 @@ object residuosRadiactivos {
   //setter peso
   method peso(_peso){
 	peso = _peso
+  }
+  method bultos(){
+    return 1
   }
 }
 
@@ -108,6 +139,10 @@ object contenedorPortuario{
   method contiene(_contiene){
     contiene = _contiene
   }
+  method bultos(){
+    return contiene.sum({o => o.bultos()}) + 1
+  }
+  
 
 }
 
@@ -121,5 +156,8 @@ object embalajeDeSeguridad {
   }
   method embalar(_objeto){
     objeto = _objeto
+  }
+  method bultos(){
+    return 2
   }
 }
