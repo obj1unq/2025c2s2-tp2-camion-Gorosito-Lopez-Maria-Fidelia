@@ -49,7 +49,7 @@ object paqueteDeLadrillos {
   method peso(){
 	cantidadDeLadrillos * 2
   }
-  method nivelDePeligrosidad(){
+  method nivelPeligrosidad(){
 	return 2
   }
 
@@ -69,7 +69,7 @@ object bateriaAntiaerea {
 		return 200
 	}
   }
-  method nivelDePeligrosidad(){
+  method nivelPeligrosidad(){
 	if (tieneMisiles){
 		return 100
 	}else{
@@ -82,12 +82,12 @@ object bateriaAntiaerea {
   }
 }
 
-object residuoesRadiactivos {
+object residuosRadiactivos {
 	var peso = 0
   method peso(){
 	return peso
   }
-  method nivelDePeligrosidad(){
+  method nivelPeligrosidad(){
 	return 200
   }
   //setter peso
