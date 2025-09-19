@@ -46,6 +46,13 @@ object camion {
 		return peligroDelCamion < nivelRuta && not self.tieneExcesoDePeso()
 	}
 	
+	method hayAlgoQuePeseEntreY(pesoUno , pesoDos){
+		return cosas.any({o => o.peso().between(pesoUno,pesoDos)})
+		//NO ANDA
+	}
 
+	method cosaMasPesadaDelCamion(){
+		return cosas.max({o => o.peso()})
+	}
 }
 
