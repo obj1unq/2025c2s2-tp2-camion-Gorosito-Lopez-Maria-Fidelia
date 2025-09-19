@@ -38,6 +38,40 @@ describe "pruebaUno" {
     assert.equals(bumblebee, camion.cosaMasPesadaDelCamion())
   }
 
+  test "caso 1 total bultos" {
+    cosas.contenedorPortuario.contiene(#{knightRider, bumblebee})
+    camion.cargar(contenedorPortuario)
+    cosas.embalajeDeSeguridad.embalar(residuosRadiactivos)
+    camion.cargar(cosas.embalajeDeSeguridad)
+    camion.cargar(arenaAGranel)
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(50)
+    camion.cargar(paqueteDeLadrillos)
+    cosas.bateriaAntiaerea.tieneMisiles(false)
+    camion.cargar(bateriaAntiaerea)
+    assert.equals(9, camion.cantidadDeBultos())
+  }
+
+  test "caso 2 total bultos" {
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(150)
+    camion.cargar(paqueteDeLadrillos)
+    camion.cargar(bateriaAntiaerea)
+    camion.cargar(contenedorPortuario)
+    assert.equals(5, camion.cantidadDeBultos())
+  }
+
+  test "caso 3 total bultos" {
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(350)
+    camion.cargar(paqueteDeLadrillos)
+    camion.cargar(arenaAGranel)
+    assert.equals(4, camion.cantidadDeBultos())
+  }
+
+  test "embalaje de seguridad" {
+    cosas.embalajeDeSeguridad.embalar(knightRider)
+    camion.cargar(cosas.embalajeDeSeguridad)
+    assert.equals(5, camion.peligroDelCamion() )
+  }
+
 
 
 
