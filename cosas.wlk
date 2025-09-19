@@ -95,3 +95,28 @@ object residuosRadiactivos {
 	peso = _peso
   }
 }
+
+object contenedorPortuario{
+  var contiene = #{}
+  const tara = 100
+  const peligrosidadDelContenido = {contiene.map({o => o.nivelPeligrosidad()})}
+  method peso(){
+    return tara + contiene.sum({o => o.peso()})
+  }
+  method nivelPeligrosidad(){
+    return peligrosidadDelContenido.maxIfEmpty({0})
+  }
+}
+
+object embalajeDeSeguridad {
+  var objeto = null //hay que cargar un valor antes de usarla
+  method peso(){
+    objeto.peso()
+  }
+  method nivelPeligrosidad(){
+    objeto.nivelPeligrosidad() * 0.5
+  }
+  method embalar(_objeto){
+    objeto = _objeto
+  }
+}
