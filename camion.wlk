@@ -40,5 +40,12 @@ object camion {
 	method unoMasPeligrosoQueCosa(cosa){
 		return self.unoMasPeligrosoQueNivel(cosa.nivelPeligrosidad())
 	}
+
+	method puedeCircularEn(nivelRuta){
+		const peligroDelCamion = cosas.sum({o => o.nivelPeligrosidad()})
+		return peligroDelCamion < nivelRuta && not self.tieneExcesoDePeso()
+	}
+
+
 }
 
