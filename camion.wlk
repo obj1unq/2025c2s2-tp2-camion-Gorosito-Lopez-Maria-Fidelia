@@ -45,7 +45,7 @@ object camion {
 		const peligroDelCamion = cosas.sum({o => o.nivelPeligrosidad()})
 		return peligroDelCamion < nivelRuta && not self.tieneExcesoDePeso()
 	}
-
+	
 
 }
 
