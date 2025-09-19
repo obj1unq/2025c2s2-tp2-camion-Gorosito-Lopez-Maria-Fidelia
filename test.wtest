@@ -26,6 +26,13 @@ describe "pruebaUno" {
     assert.that(camion.hayAlgunoQuePese(800))
   }
 
+  test "alguno que pese entre y entre" {
+    camion.cargar(paqueteDeLadrillos)
+    assert.that(camion.hayAlgoQuePeseEntreY(2,4))
+  }
+  
+
+
 
 
 
