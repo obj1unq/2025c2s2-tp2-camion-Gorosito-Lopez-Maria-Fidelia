@@ -23,7 +23,7 @@ describe "pruebaUno" {
     arenaAGranel.peso(50)
     camion.cargar(arenaAGranel)
     camion.cargar(bumblebee)
-    assert.that(camion.hayAlgunoQuePese(50))
+    assert.that(camion.hayAlgunoQuePese(800))
   }
 
 
