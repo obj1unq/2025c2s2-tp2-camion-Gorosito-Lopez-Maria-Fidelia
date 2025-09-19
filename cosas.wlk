@@ -106,6 +106,10 @@ object contenedorPortuario{
   method nivelPeligrosidad(){
     return peligrosidadDelContenido.maxIfEmpty({0})
   }
+  method contiene(_contiene){
+    contiene = _contiene
+  }
+
 }
 
 object embalajeDeSeguridad {
