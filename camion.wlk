@@ -29,6 +29,16 @@ object camion {
 		return self.pesoTotalDelCamion() > 2500
 	}
 
+	method elDeNivel(nivel){
+	return cosas.find({o => o.nivelPeligrosidad() == nivel})
+	}
+
+	method unoMasPeligrosoQueNivel(nivel){
+		return cosas.filter({o => o.nivelPeligrosidad() > nivel})
+	}
+
+	method unoMasPeligrosoQueCosa(cosa){
+		return self.unoMasPeligrosoQueNivel(cosa.nivelPeligrosidad())
+	}
 }
 
-// sodaStereo.sum({musico => musico.cantidadAsistentes()})
