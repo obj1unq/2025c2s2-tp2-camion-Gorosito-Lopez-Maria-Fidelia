@@ -99,12 +99,11 @@ object residuosRadiactivos {
 object contenedorPortuario{
   var contiene = #{}
   const tara = 100
-  const peligrosidadDelContenido = {contiene.map({o => o.nivelPeligrosidad()})}
   method peso(){
     return tara + contiene.sum({o => o.peso()})
   }
   method nivelPeligrosidad(){
-    return peligrosidadDelContenido.maxIfEmpty({0})
+    return contiene.map({o => o.nivelPeligrosidad()}).maxIfEmpty({0})
   }
   method contiene(_contiene){
     contiene = _contiene
