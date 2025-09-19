@@ -57,6 +57,14 @@ object camion {
 	method cantidadDeBultos(){
 		return cosas.sum({o => o.bultos()})
 	}
-	
+
+	method peligroDelCamion(){
+		return cosas.sum({o => o.nivelPeligrosidad()})
+	}
+
+	method sufrirAccidente(){
+		return cosas.forEach{a => a.sufreAccidente()}
+	}
+
 }
 
