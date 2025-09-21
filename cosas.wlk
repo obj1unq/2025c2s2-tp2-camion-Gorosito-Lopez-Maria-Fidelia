@@ -84,13 +84,15 @@ object paqueteDeLadrillos {
       return 1
     }
   }
-
   method sufreAccidente(){
     if(cantidadDeLadrillos > 12){
       cantidadDeLadrillos = cantidadDeLadrillos - 12
     }else{
       cantidadDeLadrillos = 0
     }
+  }
+  method cantidadDeLadrillos(){
+    return cantidadDeLadrillos
   }
 
 }
@@ -115,7 +117,9 @@ object bateriaAntiaerea {
   method tieneMisiles(_tieneMisiles) {
 	tieneMisiles = _tieneMisiles
   }
-
+  method tieneMisiles(){
+    return tieneMisiles
+  }
   method bultos(){
     if(tieneMisiles){
       return 2
