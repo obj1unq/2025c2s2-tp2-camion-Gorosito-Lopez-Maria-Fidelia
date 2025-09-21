@@ -71,6 +71,27 @@ describe "pruebaUno" {
     camion.cargar(cosas.embalajeDeSeguridad)
     assert.equals(5, camion.peligroDelCamion() )
   }
+  test "accidente caso 1"{
+    cosas.bumblebee.esAuto(true)
+    cosas.contenedorPortuario.contiene(#{knightRider,bumblebee})
+    cosas.residuosRadiactivos.peso(30)
+    cosas.embalajeDeSeguridad.embalar(residuosRadiactivos)
+    cosas.arenaAGranel.peso(50)
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(100)
+    cosas.bateriaAntiaerea.tieneMisiles(true)
+//accidente
+    cosas.contenedorPortuario.sufreAccidente()
+    cosas.residuosRadiactivos.sufreAccidente()
+    cosas.arenaAGranel.sufreAccidente()
+    cosas.paqueteDeLadrillos.sufreAccidente()
+    cosas.bateriaAntiaerea.sufreAccidente()
+//Todo se accidentea como deberia?
+    assert.notThat(cosas.bumblebee.esAuto())
+    assert.equals(45, cosas.residuosRadiactivos.peso())
+    assert.equals(70, cosas.arenaAGranel.peso())
+    assert.equals(88, cosas.paqueteDeLadrillos.cantidadDeLadrillos())
+    assert.notThat(cosas.bateriaAntiaerea.tieneMisiles())
+  }
 
 
 
