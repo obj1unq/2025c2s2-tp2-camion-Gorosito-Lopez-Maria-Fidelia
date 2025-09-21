@@ -93,6 +93,82 @@ describe "pruebaUno" {
     assert.notThat(cosas.bateriaAntiaerea.tieneMisiles())
   }
 
+  test "caso 2 accidente" {
+    cosas.bumblebee.esAuto(false)
+    cosas.residuosRadiactivos.peso(30)
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(10)
+    cosas.bateriaAntiaerea.tieneMisiles(false)
+//accidente
+    cosas.bumblebee.sufreAccidente()
+    cosas.residuosRadiactivos.sufreAccidente()
+    cosas.paqueteDeLadrillos.sufreAccidente()
+    cosas.bateriaAntiaerea.sufreAccidente()
+//vamo devuelta
+    assert.that(cosas.bumblebee.esAuto())
+    assert.equals(45, cosas.residuosRadiactivos.peso())
+    assert.equals(0, cosas.paqueteDeLadrillos.cantidadDeLadrillos())
+    assert.notThat(cosas.bateriaAntiaerea.tieneMisiles())
+  }
+
+  test "deja en almacen" {
+    almacen.agregarElementos(#{arenaAGranel})
+    camion.cargar(bumblebee)
+    camion.cargar(knightRider)
+    camion.dejarCosasEn(almacen)
+    assert.equals(#{bumblebee,knightRider,arenaAGranel}, almacen.elementos())
+  }
+
+  /*
+  que puede circular por la ruta9 implica que el peligro total del camion es menor a 20 y no tiene exceso de peso
+  */
+  test "ruta 9 exitoso" {
+    almacen.agregarElementos(#{knightRider, residuosRadiactivos})
+    cosas.bumblebee.esAuto(true)
+    camion.cargar(bumblebee)
+    camion.cargar(arenaAGranel)
+    camion.transportar(almacen, ruta9)
+    assert.equals(#{knightRider,residuosRadiactivos,bumblebee,arenaAGranel}, almacen.elementos())
+    assert.equals(#{}, camion.cosas())
+  }
+
+  test "ruta 9 fallido por peligrosidad" {
+    almacen.agregarElementos(#{knightRider, residuosRadiactivos})
+    cosas.bumblebee.esAuto(false)
+    camion.cargar(bumblebee)
+    camion.cargar(arenaAGranel)
+    camion.transportar(almacen, ruta9)
+    assert.equals(#{knightRider,residuosRadiactivos}, almacen.elementos())
+    assert.equals(#{bumblebee, arenaAGranel}, camion.cosas())
+  }
+
+  test "ruta 9 fallido exceso de peso" {
+    almacen.agregarElementos(#{knightRider, residuosRadiactivos})
+    camion.cargar(bumblebee)
+    cosas.arenaAGranel.peso(2000)
+    camion.cargar(arenaAGranel)
+    camion.transportar(almacen, ruta9)
+    assert.equals(#{knightRider,residuosRadiactivos}, almacen.elementos())
+    assert.equals(#{bumblebee, arenaAGranel}, camion.cosas())
+  }
+  test "caminos vecinales exitoso" {
+    caminosVecinales.pesoMaximoPermitido(2000)
+    almacen.agregarElementos(#{knightRider, residuosRadiactivos})
+    camion.cargar(bumblebee)
+    camion.cargar(arenaAGranel)
+    camion.transportar(almacen, caminosVecinales)
+    assert.equals(#{knightRider,residuosRadiactivos,bumblebee, arenaAGranel}, almacen.elementos())
+    assert.equals(#{}, camion.cosas())
+  }
+  test "caminos vecinales fallidos" {
+    caminosVecinales.pesoMaximoPermitido(300)
+    almacen.agregarElementos(#{knightRider, residuosRadiactivos})
+    camion.cargar(bumblebee)
+    camion.cargar(arenaAGranel)
+    camion.transportar(almacen, caminosVecinales)
+    assert.equals(#{knightRider,residuosRadiactivos}, almacen.elementos())
+    assert.equals(#{bumblebee, arenaAGranel}, camion.cosas())
+  }
+
 
 
 
