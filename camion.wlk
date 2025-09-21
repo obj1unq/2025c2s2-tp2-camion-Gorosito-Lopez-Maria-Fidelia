@@ -2,7 +2,7 @@ import cosas.*
 
 object camion {
 	const tara = 1000
-	const property cosas = #{}
+	var property cosas = #{}
 	var dondeDejarCosas = almacen
 	
 	method cargar(unaCosa) {
@@ -27,7 +27,7 @@ object camion {
 	}
 	
 	method pesoTotalDelCamion(){
-		return tara + cosas.sum(cosas.map({o => o.peso()}))
+		return tara + cosas.sum({o => o.peso()})
 	}
 
 	method tieneExcesoDePeso(){
@@ -71,10 +71,48 @@ object camion {
 		return cosas.forEach{a => a.sufreAccidente()}
 	}
 
+	method dejarCosasEn(lugar){
+		lugar.agregarElementos(cosas)
+		cosas = #{}
+	}
+	
+	method transportar(destino,camino){
+		if (camino.puedeCircular(self)){
+			self.dejarCosasEn(destino)
+		}
+	}
+
 }
 
 object almacen {
   var elementos = #{}
 
+  method elementos(){
+	return elementos
+  }
+
+  method agregarElementos(_elementos){
+	elementos = elementos.union(_elementos)
+  }
+  
 }
 
+object ruta9{
+	method puedeCircular(transporte){
+		return transporte.puedeCircularEn(20)
+	}
+	
+}
+
+object caminosVecinales {
+	var pesoMaximoPermitido = 0
+  method puedeCircular(transporte){
+	return transporte.pesoTotalDelCamion() < self.pesoMaximoPermitido()
+  }
+  method pesoMaximoPermitido(_pesoMaximoPermitido){
+	pesoMaximoPermitido = _pesoMaximoPermitido
+  }
+  method pesoMaximoPermitido(){
+	return pesoMaximoPermitido
+  }
+}
