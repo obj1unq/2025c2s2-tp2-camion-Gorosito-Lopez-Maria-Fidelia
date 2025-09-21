@@ -27,6 +27,7 @@ describe "pruebaUno" {
   }
 
   test "alguno que pese entre y entre" {
+    cosas.paqueteDeLadrillos.cantidadDeLadrillos(1)
     camion.cargar(paqueteDeLadrillos)
     assert.that(camion.hayAlgoQuePeseEntreY(2,4))
   }
