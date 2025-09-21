@@ -3,6 +3,7 @@ import cosas.*
 object camion {
 	const tara = 1000
 	const property cosas = #{}
+	var dondeDejarCosas = almacen
 	
 	method cargar(unaCosa) {
 		cosas.add(unaCosa)
@@ -10,6 +11,10 @@ object camion {
 	
 	method descargar(unaCosa) {
 		cosas.remove(unaCosa)
+	}
+
+	method dondeDejarCosas(_dondeDejarCosas) {
+	  dondeDejarCosas = _dondeDejarCosas
 	}
 	
 	method todoPesoPar(){
@@ -65,6 +70,11 @@ object camion {
 	method sufrirAccidente(){
 		return cosas.forEach{a => a.sufreAccidente()}
 	}
+
+}
+
+object almacen {
+  var elementos = #{}
 
 }
 
